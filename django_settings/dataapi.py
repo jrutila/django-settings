@@ -54,9 +54,7 @@ class DataAPIMetaclass(type):
         return new
 
 
-class DataAPI(object):
-    __metaclass__ = DataAPIMetaclass
-
+class DataAPI(object, metaclass=DataAPIMetaclass):
     def __init__(self, cache_client=None):
         self._client = cache_client
 
