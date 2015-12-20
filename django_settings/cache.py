@@ -9,6 +9,7 @@ a set of tools that makes method caching a little more flexible that simple
 XXX: the whole mechanism should be fixed as now it's too complicated to explain
 """
 from .lazyimport import lazyimport
+from django.db import connection
 
 django = lazyimport({
     'settings': 'django.conf',
@@ -36,6 +37,7 @@ class KeyMaker(object):
 
     def make(self, method_name, args, kwargs):
         key = ":".join((
+            connection.get_schema(),
             self.prefix,
             method_name,
             self.args_to_key(args),
