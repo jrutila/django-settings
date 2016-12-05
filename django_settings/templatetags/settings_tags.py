@@ -33,4 +33,5 @@ def settings(parser, token):
     if not (arg[0] == arg[-1] and arg[0] in ('"', "'")):
         raise template.TemplateSyntaxError(
             "%r tag's argument should be in quotes" % tag_name)
-    return ContextNode(django_settings.get(arg[1:-1]), var_name)
+    key_name = django_settings.get(arg[1:-1])
+    return ContextNode(key_name, var_name)

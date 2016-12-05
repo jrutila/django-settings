@@ -6,7 +6,8 @@ class KeyMaker(object):
 
     def convert(self, arg):
         if sys.version_info < (3,) and isinstance(arg, unicode):
-            return arg.encode(django.settings.DEFAULT_CHARSET)
+            from django.conf import settings
+            return arg.encode(settings.DEFAULT_CHARSET)
         return str(arg)
 
     def args_to_key(self, args):
